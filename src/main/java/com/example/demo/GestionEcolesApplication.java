@@ -18,8 +18,19 @@ import com.example.demo.entities.Ecole;
 @SpringBootApplication
 public class GestionEcolesApplication implements CommandLineRunner{
 	
-	private String[] EcoleNamesList={"Ecole ESTIAM", "Ecole Centrale Paris", "HEC Paris", "ESSEC Business School", "Sciences Po", "Université Paris-Saclay", "Université Paris Dauphine", "Université Paris Nanterre"};
-	private String[] EcoleAdressesList={"Adresse 1 ","Adresse 2","Adresse 3","Adresse 4","Adresse 5","Adresse 6","Adresse 7","Adresse 8","Adresse 9","Adresse 10"};
+	private String[] EcoleNamesList={"Ecole ESTIAM Lyon", "Ecole Centrale Paris", "HEC Paris", "ESSEC Business School", "Sciences Po", "Université Paris-Saclay", "Université Paris Dauphine", "Université Paris Nanterre"};
+	private String[] EcoleAdressesList = {
+			"17 Rue du Chêne, 69007 Lyon",
+            "42 Boulevard des Alouettes, 31000 Toulouse",
+            "8 Avenue de la Gare, 69002 Lyon",
+            "22 Rue de la Fontaine, 44000 Nantes",
+            "5 Place de la République, 13001 Marseille",
+            "11 Rue de la Liberté, 67000 Strasbourg",
+            "3 Rue de la Paix, 06000 Nice",
+            "16 Rue de la Victoire, 59000 Lille",
+            "9 Avenue du Général de Gaulle, 75008 Paris",
+            "7 Rue de la Mairie, 33000 Bordeaux"};
+
 	
 	@Autowired
 	private ClasseRepository classeRepository;
@@ -35,7 +46,7 @@ public class GestionEcolesApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		Random random = new Random();
 		int nbr_ecoles = random.nextInt(6) + 5;
-		System.out.println("On a " + nbr_ecoles + " d'Ecole");
+		System.out.println("On a " + nbr_ecoles + " Ecoles");
 		for (int i = 0; i < nbr_ecoles; i++) {
 		    Ecole monEcole = new Ecole();
 		    monEcole.setAdresse(EcoleAdressesList[i]);
@@ -49,7 +60,7 @@ public class GestionEcolesApplication implements CommandLineRunner{
 		        Classe maClasse = new Classe();
 		        int nbr_eleves = random.nextInt(21) + 10;
 		        maClasse.setNbreleve(nbr_eleves);
-		        maClasse.setNom("Classe n°" + j);
+		        maClasse.setNom("Classe n°" + (j+1));
 
 		        maClasse.setEcole(monEcole);
 		        classeRepository.save(maClasse); 
