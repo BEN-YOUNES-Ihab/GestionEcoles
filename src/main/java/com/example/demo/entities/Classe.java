@@ -20,7 +20,7 @@ public class Classe {
 		
 		@ManyToOne
 	    @JoinColumn(name = "ecole_id")
-	    @JsonIgnoreProperties("classes") // Add this line
+	    @JsonIgnoreProperties("classes")
 	    private Ecole ecole;
 		
 		private String nom;
