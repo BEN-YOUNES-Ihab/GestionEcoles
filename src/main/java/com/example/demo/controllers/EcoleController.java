@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.EcoleRepository;
@@ -29,8 +30,11 @@ public class EcoleController {
 	private EcoleRepository ecoleRepository;
 	
 	@GetMapping("")
-	public List<Ecole> getAllEcoles() {
-		return ecoleRepository.findAll();
+	public List<Ecole> getAllEcoles(@RequestParam(required = false) String keyword) {
+	    if(keyword == null) {
+	        return ecoleRepository.findAll();
+	    }
+	    return ecoleRepository.findByNomContainingIgnoreCase(keyword);
 	}
 	
 	@GetMapping("/{id}")
