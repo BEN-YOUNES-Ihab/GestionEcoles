@@ -55,30 +55,31 @@ public class GestionEcolesApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		Random random = new Random();
-		int nbr_ecoles = random.nextInt(6) + 5;
-		System.out.println("On a " + nbr_ecoles + " Ecoles");
-		for (int i = 0; i < nbr_ecoles; i++) {
-		    Ecole monEcole = new Ecole();
-		    monEcole.setAdresse(EcoleAdressesList[i]);
-		    monEcole.setNom(EcoleNamesList[i]);
-		    ecoleRepository.save(monEcole); 
+		int nombre_ecoles = random.nextInt(6) + 5;
+		System.out.println(nombre_ecoles + " Ecoles");
+		for (int i = 0; i < nombre_ecoles; i++) {
+		    Ecole ecole = new Ecole();
+		    ecole.setAdresse(EcoleAdressesList[i]);
+		    ecole.setNom(EcoleNamesList[i]);
+		    ecoleRepository.save(ecole); 
 
-		    int nbr_classes = random.nextInt(81) + 20;
+		    int nombre_classes = random.nextInt(81) + 20;
+		    System.out.println(nombre_classes +" classes pour l'école n°" + (i+1) );
 		    List<Classe> ListIds = new ArrayList<>();
 
-		    for (int j = 0; j < nbr_classes; j++) {
-		        Classe maClasse = new Classe();
-		        int nbr_eleves = random.nextInt(21) + 10;
-		        maClasse.setNbreleve(nbr_eleves);
-		        maClasse.setNom("Classe n°" + (j+1));
+		    for (int j = 0; j < nombre_classes; j++) {
+		        Classe classe = new Classe();
+		        int nombre_eleves = random.nextInt(21) + 10;
+		        classe.setNbreleve(nombre_eleves);
+		        classe.setNom("Classe n°" + (j+1));
 
-		        maClasse.setEcole(monEcole);
-		        classeRepository.save(maClasse); 
+		        classe.setEcole(ecole);
+		        classeRepository.save(classe); 
 
 		    }
 
-		    monEcole.setClasses(ListIds); 
-		    ecoleRepository.save(monEcole); 
+		    ecole.setClasses(ListIds); 
+		    ecoleRepository.save(ecole); 
 		}
 	}
 

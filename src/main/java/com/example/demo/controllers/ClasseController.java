@@ -42,11 +42,13 @@ public class ClasseController {
 	@Autowired
 	EcoleRepository ecoleRepository;
 	
+	/*
 	@GetMapping("/hello")
     public String sayHello() {
 		System.out.println("Hello World!");
         return "Hello World!";
     }
+	*/
 	
 	@PostMapping("/addClasseByEcoleId/{id}")
 	public ResponseEntity<Classe> addClasseByEcoleId(@PathVariable(value = "id") Long ecoleId,
